@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Kerala Election 2016</title> 
+  <link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet'>
+  <style>
+  body {
+    font-family: 'Alegreya';
+	font-size: 25px;
+    }
+    
+	input[type=text], select {
+	  font-size: 15px;
+	  width: 50%;
+	  padding: 12px 20px;
+	  margin: 8px 50px;
+	  display: inline-block;
+	  border: 1px solid #ff0000;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	}
+	
+	input[type=number]{
+	  font-size: 18px;
+	  width: 10%;
+	  padding: 12px 20px;
+	  margin: 8px 50px;
+	  display: inline-block;
+	  border: 1px solid #ff0000;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	}
+    input[type=radio]{
+	  padding: 12px 20px;
+	  margin: 8px 0;
+	  height: 25px;
+	  width: 25px;
+	}
+
+	button[type=submit] {
+	  font-size: 25px;
+	  width: 75%;
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 14px 20px;
+	  margin: 8px 0;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	}
+	.center {
+	  margin: auto;
+	  width: 75%;
+	  border-style: solid;
+	  border-color: blue;
+	  border-radius: 20px;
+	  background-color: #f2f2f2;
+	  padding: 10px;
+	}
+
+  </style>	
+</head>
+
+
+<body>
+	<center><h1>KERALA ELECTIONS 2016</h1></center>
+
+ <div class="center">
+	<form action="{{ url_for('result')}}" method="post">
+	
+				
+		<label for="term">Constituency</label>
+		<select id="const" name="const">
+		  <option value=1>MANJESHWAR </option>
+		  <option value=2>KASARAGOD</option>
+		  <option value=3>UDMA</option>
+		  <option value=4>KANHANGAD</option>
+		  <option value=5>TRIKARIPUR</option>
+		  <option value=6>PAYYANNUR</option>
+		  <option value=7>KALLIASSERI</option>
+		  <option value=8>TALIPARAMBA</option>
+		  <option value=9>IRIKKUR</option>
+		  <option value=10>AZHIKODE</option>
+		  <option value=11>KANNUR</option>
+		  <option value=12>DHARMADAM</option>
+		  <option value=13>THALASSERY</option>
+		  <option value=14>KUTHUPARAMBA </option>
+		  <option value=15>MATTANNUR</option>
+		  <option value=16>PERAVOOR</option>
+		  <option value=17>MANANTHAVADY</option>
+		  <option value=18>SULTHANBATHERY</option>
+		  <option value=19>KALPETTA</option>
+		  <option value=20>VADAKARA</option>
+		  <option value=21>KUTTIADI</option>
+		  <option value=22>NADAPURAM</option>
+		  <option value=23>QUILANDY</option>
+		  <option value=24>PERAMBRA</option>
+		  <option value=25>BALUSSERI<option>
+		  <option value=26>ELATHUR</option>
+		  <option value=27>KOZHIKODE NORTH</option>
+		  <option value=28>KOZHIKODE SOUTH</option>
+		  <option value=29>BEYPORE</option>
+		  <option value=30>KUNNAMANGALAM</option>
+		  <option value=31>KODUVALLY</option>
+		  <option value=32>THIRUVAMBADY</option>
+		  <option value=33>KONDOTTY</option>
+		  <option value=34>ERANAD</option>
+		  <option value=35>NILAMBUR</option>
+		  <option value=36>WANDOOR</option>
+		  <option value=37>MANJERI</option>
+		  <option value=38>PERINTHALMANNA</option>
+		  <option value=39>MANKADA</option>
+		  <option value=40>MALAPPURAM</option>
+		  <option value=41>VENGARA</option>
+		  <option value=42>VALLIKKUNNU</option>
+		  <option value=43>TIRURANGADI</option>
+		  <option value=44>TANUR</option>
+		  <option value=45>TIRUR</option>
+		  <option value=46>KOTTAKKAL</option>
+		  <option value=47>THAVANUR</option>
+		  <option value=48>PONNANI</option>
+		  <option value=49>THRITHALA</option>
+		  <option value=50>PATTAMBI</option>
+		  <option value=51>SHORNUR</option>
+		  <option value=52>OTTAPALAM</option>
+		  <option value=53>KONGAD</option>
+		  <option value=54>MANNARKAD</option>
+		  <option value=55>MALAMPUZHA</option>
+		  <option value=56>PALAKKAD</option>
+		  <option value=57>TARUR</option>
+		  <option value=58>CHITTUR</option>
+		  <option value=59>NENMARA</option>
+		  <option value=60>ALATHUR</option>
+		  <option value=61>CHELAKKARA
+		  <option value=62>KUNNAMKULAM</option>
+		  <option value=63>GURUVAYOOR</option>
+		  <option value=64>MANALUR</option>
+		  <option value=65>WADAKKANCHERY</option>
+		  <option value=66>OLLUR</option>
+		  <option value=67>THRISSUR</option>
+		  <option value=68>NATTIKA</option>
+		  <option value=69>KAIPAMANGALAM</option>
+		  <option value=70>IRINJALAKKUDA</option>
+		  <option value=71>PUTHUKKAD</option>
+		  <option value=72>CHALAKKUDY</option>
+		  <option value=73>KODUNGALLUR</option>
+		  <option value=74>PERUMBAVOOR</option>
+		  <option value=75>ANGAMALY</option>
+		  <option value=76>ALUVA</option>
+		  <option value=77>KALAMASSERY</option>
+		  <option value=78>PARAVUR</option>
+		  <option value=79>VYPEN</option>
+		  <option value=80>KOCHI</option>
+		  <option value=81>THRIPUNITHURA</option>
+		  <option value=82>ERANAKULAM</option>
+		  <option value=83>THRIKKAKARA</option>
+		  <option value=84>KUNNATHUNAD</option>
+		  <option value=85>PIRAVOM</option>
+		  <option value=86>MUVATTUPUZHA</option>
+		  <option value=87>KOTHAMANGALAM</option>
+		  <option value=88>DEVIKULAM</option>
+		  <option value=89>UDUMBANCHOLA</option>
+		  <option value=90>THODUPUZHA</option>
+		  <option value=91>IDUKKI</option>
+		  <option value=92>PEERUMADE</option>
+		  <option value=93>PALA</option>
+		  <option value=94>KADUTHURUTHY</option>
+		  <option value=95>VAIKOM</option>
+		  <option value=96>ETTUMANOOR</option>
+		  <option value=97>KOTTAYAM</option>
+		  <option value=98>PUTHUPPALLY</option>
+		  <option value=99>CHANGANASSERY</option>
+		  <option value=100>KANJIRAPPALLY</option>
+		  <option value=101>POONJAR</option>
+		  <option value=102>AROOR</option>
+		  <option value=103>CHERTHALA</option>
+		  <option value=104>ALAPPUZHA</option>
+		  <option value=105>AMBALAPUZHA</option>
+		  <option value=106>KUTTANAD</option>
+		  <option value=107>HARIPAD</option>
+		  <option value=108>KAYAMKULAM</option>
+		  <option value=109>MAVELIKARA</option>
+		  <option value=110>CHENGANNUR</option>
+		  <option value=111>THIRUVALLA</option>
+		  <option value=112>RANNI</option>
+		  <option value=113>ARANMULA</option>
+		  <option value=114>KONNI</option>
+		  <option value=115>ADOOR</option>
+		  <option value=116>KARUNAGAPPALLY</option>
+		  <option value=117>CHAVARA</option>
+		  <option value=118>KUNNATHUR
+		  <option value=119>KOTTARAKKARA</option>
+		  <option value=120>PATHANAPURAM</option>
+		  <option value=121>PUNALUR</option>
+		  <option value=122>CHADAYAMANGALAM</option>
+		  <option value=123>KUNDARA</option>
+		  <option value=124>KOLLAM</option>
+		  <option value=125>ERAVIPURAM</option>
+		  <option value=126>CHATHANNUR</option>
+		  <option value=127>VARKALA</option>
+		  <option value=128>ATTINGAL</option>
+		  <option value=129>CHIRAYINKEEZHU</option>
+		  <option value=130>NEDUMANGAD</option>
+		  <option value=131>VAMANAPURAM</option>
+		  <option value=132>KAZHAKKOOTTAM</option>
+		  <option value=133>VATTIYOORKAVU</option>
+		  <option value=134>THIRUVANANTHAPURAM</option>
+		  <option value=135>NEMOM</option>
+		  <option value=136>ARUVIKKARA</option>
+		  <option value=137>PARASSALA</option>
+		  <option value=138>KATTAKKADA</option>
+		  <option value=139>KOVALAM</option>
+		  <option value=140>NEYYATTINKARA</option>
+		</select><br><br>
+				
+		<center><button type="submit" >Result</button></center>
+	</form>
+	  
+ </div>
+
+</body>
+</html>
