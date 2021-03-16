@@ -1,8 +1,8 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-
-data=pd.read_excel("Downloads//Detailed Results.xlsx")
+import math
+data=pd.read_excel("C:\\Users\\snair\\Downloads\\Detailed Results.xlsx")
 col=data.iloc[1,:]
 data=data.iloc[2:,]
 data.columns=col
@@ -29,28 +29,60 @@ data.reset_index(inplace=True,drop=True)
 pos=[i for i in range(1,4)]*140
 data["Position"]=pos
 
+data.Party.unique()
+data.loc[data.Party=="CPM","Party"]="CPIM"
+
 data.isna().sum()
 data.Const_name.value_counts()
 data.Party.value_counts()
-data.to_csv("election_kerala",index=False)
+data.loc[(data.Party=="BJP") & (data.Position==2)]
 
-const_data=data=data.loc[data.Const_no==1]
-
-g=sns.barplot(x="Party",y="Vote",data=const_data)
-for index, row in const_data.iterrows():
-    g.text(row.Party,row.Vote, color='black', ha="center")
+data.to_csv("assembly",index=False)
 
 
-plt.bar(x=const_data.Party,height=const_data.Vote)
-for index, value in enumerate(const_data.Vote):
-    plt.text(value, index, str(value))
-plt.set_tick_params(pad=5)
 
-fig, ax = plt.subplots(figsize =(10, 5))
+lok_sabha=pd.read_excel("2019_lok_sabha.xls")
+col=lok_sabha.iloc[1,:]
+lok_sabha=lok_sabha.iloc[2:,:].reset_index(drop=True)
+lok_sabha.columns=col
+lok_sabha.isna().sum()
+lok_sabha=lok_sabha.iloc[18511:20100,:]
+lok_sabha.reset_index(drop=True,inplace=True)
+lok_sabha=lok_sabha.iloc[:,[3,4,8,9,10]]
+
+col=['Const_no', 'Const_name', 'Candidate', 'Party', 'Vote']
+lok_sabha.columns=col
+
+lok_sabha["Const_no"]=lok_sabha["Const_no"].map(lambda x: int_type(x))
+lok_sabha["Vote"]=lok_sabha["Vote"].map(lambda x: int_type(x))
+
+lok_sabha.Party.unique()
+
+lok_clean=lok_sabha.drop(lok_sabha.index)
+
+for i in range(1,141):
+    temp=lok_sabha.loc[lok_sabha.Const_no==i].sort_values('Vote',ascending=False)[:3]
+    lok_clean=lok_clean.append(temp)
+
+pos=[i for i in range(1,4)]*140
+lok_clean["Position"]=pos
+
+lok_clean.loc[(lok_clean.Party=="BJP") & (lok_clean.Position==1)]
+lok_clean.to_csv("lok_sabha",index=False)
+
+
+constituency=100
+ass=data.loc[data.Const_no==constituency,["Party","Vote"]].reset_index(drop=True)
+par=lok_clean.loc[lok_clean.Const_no==constituency,["Party","Vote"]].reset_index(drop=True)
+ass["Year"]=2016
+par["Year"]=2019
+vote_share=ass.append(par).reset_index(drop=True)
+
+
+fig, ax = plt.subplots(figsize =(12,8))
  
 # Horizontal Bar Plot
-ax.barh(const_data.Party,const_data.Vote,color=['red', 'blue', 'orange'],edgecolor='black')
- 
+ax=sns.barplot(x="Year", y="Vote", hue="Party", data=vote_share)
 # Remove axes splines
 for s in ['top', 'bottom', 'left', 'right']:
     ax.spines[s].set_visible(False)
@@ -60,19 +92,37 @@ ax.xaxis.set_ticks_position('none')
 ax.yaxis.set_ticks_position('none')
  
 # Add padding between axes and labels
-ax.xaxis.set_tick_params(pad = 5)
-ax.yaxis.set_tick_params(pad = 10)
+ax.xaxis.set_tick_params(pad = 20)
+ax.yaxis.set_tick_params(pad = 20)
+plt.title(data.loc[data.Const_no==constituency,"Const_name"].unique()[0],
+          fontsize = 25,fontweight ='bold')
 
-ax.invert_yaxis()
- 
+ax.legend(loc='center', frameon=False)
+
 # Add annotation to bars
 for i in ax.patches:
-    plt.text(i.get_width()+0.2, i.get_y()+0.5, 
-             str(round((i.get_width()), 2)),
-             fontsize = 10, fontweight ='bold',
-             color ='grey')
+    height=i.get_height()
+    if not math.isnan(height):
+        ax.annotate(str(int(height)), (i.get_x(),height), xytext=(0, 10), textcoords='offset points',fontsize = 12,fontweight ='bold')
 
-l=data.Const_name.unique()
-pd.DataFrame(l).to_csv("constituency",index=False)
+len(data.loc[(data.Party=="CPIM") & (data.Position==1) ])
+summary=pd.DataFrame([],columns={"","CPIM","INC","BJP"})
+summary.iloc[:,0]=["First","Runner Up"]
+
+for i in ["CPIM","INC","BJP"]:
+    first=len(data.loc[(data.Party==i) & (data.Position==1) ])
+    second=len(data.loc[(data.Party==i) & (data.Position==2) ])
+    summary[i][0]=first
+    summary[i][1]=second
+    
+
+
+
+
+
+
+
+
+
 
 
